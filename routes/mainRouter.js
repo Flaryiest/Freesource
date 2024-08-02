@@ -20,5 +20,6 @@ mainRouter.post("/new-post", mainController.createPost)
 
 mainRouter.get("/log-out", mainController.logOut)
 
+mainRouter.get("/dashboard", mainController.getDashboard)
 
 module.exports = mainRouter

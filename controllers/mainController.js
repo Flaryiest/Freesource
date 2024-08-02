@@ -61,4 +61,11 @@ async function createPost(req, res) {
     res.redirect("/")
 }
 
-module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut, getPostForm, createPost}
+async function getDashboard(req, res) {
+    console.log(req.user.id)
+    let userPosts = await db.getUserPosts(req.user.id)
+    console.log(userPosts)
+    res.render("dashboard", {posts : userPosts})
+}
+
+module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut, getPostForm, createPost, getDashboard}

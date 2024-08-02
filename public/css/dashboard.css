@@ -1,0 +1,16 @@
+.postContainer {
+    display: flex;
+    margin-top: 10dvh;
+    width: 100dvw;
+    height: 100%;
+    font-family: "roboto";
+    align-items: center;
+
+    flex-direction: column;
+    gap: 3dvh;
+}
+
+.post {
+    width: 80dvw;
+
+}

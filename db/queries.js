@@ -10,4 +10,10 @@ async function createPost(user_id, title, price, description, tags) {
     await pool.query("INSERT INTO posts (user_id, title, price, description, tags) VALUES (($1), ($2), ($3), ($4), ($5))", [user_id, title, price, description, tags])
 }
 
-module.exports = {signUp, createPost}
+async function getUserPosts(user_id) {
+    const {rows} = await pool.query("SELECT * FROM posts WHERE user_id = ($1)", [user_id])
+    console.log(rows)
+    return rows
+}
+
+module.exports = {signUp, createPost, getUserPosts}
