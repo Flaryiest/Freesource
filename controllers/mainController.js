@@ -48,8 +48,16 @@ async function logOut(req, res, next) {
 }
 
 async function createPost(req, res) {
-    console.log(req.body)
-    db.createPost(req.currentUser.id, req.body.title, parseInt(req.body.price), req.body.description)
+    console.log(req.body.selectedTags)
+    let postTags = req.body.selectedTags.split(", ")
+    filteredPostTags = postTags.filter((tag) => tag != " ")
+    filteredPostTags = filteredPostTags.filter((tag) => tag != '')
+    console.log(filteredPostTags)
+    if (!(filteredPostTags)) {
+        filteredPostTags = []
+    }
+    console.log(req.user)
+    db.createPost(req.user.id, req.body.title, parseInt(req.body.price), req.body.description, filteredPostTags)
     res.redirect("/")
 }
 
