@@ -1,11 +1,10 @@
 {
-  "name": "nextstephacks",
+  "name": "spontaneity",
   "version": "1.0.0",
-  "description": "Project for Next Step Hacks 2024",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "node --watch index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,15 @@
+<div class="navbar">
+    <div class="title">Free Source</div>
+    <nav>
+        <ul class="links">
+            <li><a href="/">Home</a></li>
+            <% if (locals.currentUser) { %>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/log-out">Log Out</a></li>
+            <% } else { %>
+            <li><a href="/login">Log In</a></li>
+            <li><a href="/sign-up">Sign Up</a></li>
+            <% } %> 
+        </ul>
+    </nav>
+</div>
