@@ -45,4 +45,10 @@ async function logOut(req, res, next) {
     });
 }
 
+
+async function notify(req, res, next, recipient, subject, body) {
+    const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+}
+
 module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut}
