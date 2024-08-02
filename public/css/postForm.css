@@ -94,4 +94,20 @@ form {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+    margin-top: 2dvh;
+    align-items: center;
+    justify-content: center;
+    height: 3dvh;
+}
+
+.deleteSelectedTagButton {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    box-shadow: none;
+    padding: 0px;
+    text-align: center;
 }

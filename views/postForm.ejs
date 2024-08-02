@@ -18,7 +18,7 @@
     <div class="container">
       <div class="wrapper">
         <div class="title2"><span>Create Post</span></div>
-        <form action="#" method="post">
+        <form action="/new-post" method="POST">
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" id="title" name="title" required>
@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 <label for="tags">Tags</label>
-                <input type="search" id="tags" name="tags" placeholder="Search tags...">
+                <input type="search" id="tags" placeholder="Search tags...">
                 <div class="selectedTags">
                     <input class="hiddenSelectedTags" name="selectedTags" type="hidden">
                     <div>Selected Tags:</div>
@@ -54,45 +54,80 @@
     const selectedTags = document.querySelector(".selectedTags")
     const hiddenSelectedTags = document.querySelector(".hiddenSelectedTags")
     let tags = ['coding', 'graphic design', 'data analysis', 'project management', 'public speaking', 'cooking', 'carpentry', 'plumbing', 'electrical work', 'welding', 'sewing', 'knitting', 'gardening', 'photography', 'videography', 'editing', 'writing', 'content creation', 'social media management', 'digital marketing', 'UX/UI design', 'web development', 'app development', 'game development', 'cybersecurity', 'networking', 'IT support', 'machine learning', 'artificial intelligence', 'blockchain', 'cloud computing', 'DevOps', 'robotics', 'biotechnology', 'chemistry', 'physics', 'mathematics', 'statistics', 'economics', 'finance', 'accounting', 'investment', 'business strategy', 'entrepreneurship', 'sales', 'customer service', 'negotiation', 'leadership', 'teamwork', 'time management', 'organizational skills', 'problem-solving', 'critical thinking', 'creativity', 'adaptability', 'conflict resolution', 'emotional intelligence', 'stress management', 'wellness coaching', 'fitness training', 'yoga', 'meditation', 'nutrition', 'diet planning', 'culinary arts', 'baking', 'bartending', 'mixology', 'floral design', 'interior design', 'fashion design', 'jewelry making', 'ceramics', 'sculpting', 'painting', 'drawing', 'illustration', 'calligraphy', 'animation', '3D modeling', '3D printing', 'virtual reality', 'augmented reality', 'e-learning', 'teaching', 'tutoring', 'language translation', 'interpretation', 'sign language', 'speech therapy', 'audiology', 'physical therapy', 'occupational therapy', 'nursing', 'medicine', 'dentistry', 'pharmacy', 'veterinary medicine', 'psychology', 'counseling', 'social work', 'human resources', 'recruiting', 'training and development', 'event planning', 'hospitality management', 'tourism management', 'aviation', 'marine navigation', 'automotive repair', 'mechanical engineering', 'electrical engineering', 'civil engineering', 'architecture', 'urban planning', 'landscaping', 'real estate', 'property management', 'law', 'legal research', 'paralegal work', 'journalism', 'broadcasting', 'radio hosting', 'podcasting', 'music production', 'sound engineering', 'singing', 'instrumental music', 'songwriting', 'dance', 'choreography', 'theater', 'acting', 'directing', 'film production', 'screenwriting', 'stunt work', 'special effects', 'makeup artistry', 'cosmetology', 'hairstyling', 'barbering', 'esthetician work', 'massage therapy', 'acupuncture', 'chiropractic care', 'personal shopping', 'concierge services', 'private investigation', 'security services', 'firefighting', 'emergency medical services', 'military training', 'archery', 'fencing', 'martial arts', 'boxing', 'wrestling', 'gymnastics', 'swimming', 'diving', 'sailing', 'surfing', 'snowboarding', 'skiing', 'hiking', 'rock climbing', 'camping', 'fishing', 'hunting', 'wildlife conservation', 'forestry', 'agriculture', 'animal husbandry', 'beekeeping', 'winemaking', 'brewing', 'distilling', 'juggling', 'magic', 'comedy', 'ventriloquism', 'puppetry', 'storytelling', 'publishing', 'editing', 'proofreading', 'copywriting', 'SEO', 'content strategy', 'brand management', 'market research', 'product design', 'industrial design', 'quality assurance', 'supply chain management', 'logistics', 'inventory management', 'procurement', 'e-commerce', 'retail management', 'wholesale trade', 'import/export', 'shipping and receiving', 'customs brokerage', 'freight forwarding', 'warehousing', 'packaging design', 'labeling', 'pricing strategy', 'advertising', 'media buying', 'public relations', 'communications', 'crisis management', 'graphic design', 'logo design', 'web design', 'illustration', 'custom artwork', 'portrait painting', 'tattoo design', 'branding', 'business cards', 'flyers', 'brochures', 'social media graphics', 'infographics', 'product packaging', 'event invitations', 'wedding invitations', 'custom stationery', 'photo editing', 'video editing', 'animation', 'motion graphics', 'voice-over work', 'music composition', 'jingle creation', 'website development', 'app development', 'e-commerce setup', 'SEO optimization', 'content writing', 'copywriting', 'proofreading', 'resume writing', 'cover letter writing', 'grant writing', 'business plan writing', 'marketing strategy', 'social media management', 'digital marketing', 'advertising campaigns', 'photography services', 'portrait photography', 'event photography', 'product photography', 'real estate photography', 'food photography', 'pet photography', 'family photoshoots', 'engagement photos', 'wedding photography', 'personal training', 'fitness coaching', 'nutrition counseling', 'life coaching', 'career coaching', 'academic tutoring', 'music lessons', 'language tutoring', 'art classes', 'dance lessons', 'yoga instruction', 'meditation coaching', 'home organization', 'interior design', 'home staging', 'furniture design', 'custom cabinetry', 'renovation design', 'landscaping design', 'garden design', 'holiday decorations', 'event planning', 'party planning', 'wedding planning', 'venue selection', 'catering services', 'cake design', 'floral arrangements', 'custom gifts', 'crafts and DIY projects', 'personal shopping', 'gift shopping', 'home cleaning', 'housekeeping', 'pet sitting', 'dog walking', 'personal errands', 'travel planning', 'itinerary planning', 'concierge services', 'virtual assistant services', 'tech support', 'computer repair', 'home repair', 'car detailing', 'vehicle repair', 'auto detailing', 'legal consulting', 'financial consulting', 'tax preparation', 'estate planning', 'insurance consulting', 'property management', 'real estate services', 'appraisal services', 'taxidermy', 'antique restoration', 'furniture restoration', 'bookbinding', 'custom framing', 'tattoo removal', 'image consulting', 'fashion styling', 'hair styling', 'makeup artistry', 'cosmetic procedures', 'massage therapy', 'acupuncture', 'personal security', 'event security', 'cybersecurity consultation', 'data protection', 'privacy consulting', 'custom software development', 'app customization', 'website maintenance', 'hosting services', 'IT consulting']
+
     tagSearch.addEventListener("input", (e) => {
         tagList.replaceChildren()
-        console.log(e.target.value)
 
         let matchedTagCount = 0
             for (let i = 0; i < tags.length; i++) {
                 if (matchedTagCount >= 10) {
                     break
                 }
-            if (tags[i].includes(e.target.value.toLowerCase())) {
-                const matchingTag = document.createElement('div')
-                matchingTag.classList.add("matchingTag")
-                const addTagButton = document.createElement('button')
-                addTagButton.type = "button"
-                addTagButton.classList.add("addTagButton")
-                addTagButton.textContent = "+"
-                addTagButton.value = tags[i][0].toUpperCase() + tags[i].substring(1)
+                if (tags[i].includes(e.target.value.toLowerCase())) {
+                    const matchingTag = document.createElement('div')
+                    matchingTag.classList.add("matchingTag")
+                    const addTagButton = document.createElement('button')
+                    addTagButton.type = "button"
+                    addTagButton.classList.add("addTagButton")
+                    addTagButton.textContent = "+"
+                    addTagButton.value = tags[i][0].toUpperCase() + tags[i].substring(1)
 
-                addTagButton.addEventListener("click", (e) => {
-                    console.log(e.target.value)
-                    if (hiddenSelectedTags.value) {
-                    hiddenSelectedTags.value = hiddenSelectedTags.value + ", " + e.target.value
-                    }
-                    else {
-                        hiddenSelectedTags.value = e.target.value
-                    }
-                    let selectedTag = document.createElement("div")
-                    selectedTag.textContent = e.target.value
-                    deleteSelectedTagButton = document.createElement("button")
-                    deleteSelectedTagButton.type = "button"
-                    selectedTags.appendChild(selectedTag)
-                    console.log(hiddenSelectedTags.value)
-                })
+                    addTagButton.addEventListener("click", (e) => {
+                        if (hiddenSelectedTags.value) {
+                        hiddenSelectedTags.value = hiddenSelectedTags.value + ", " + e.target.value
+                        }
+                        else {
+                            hiddenSelectedTags.value = e.target.value
+                        }
+                        tagsIndex = tags.indexOf(e.target.value.toLowerCase())
 
-                matchingTag.textContent = tags[i][0].toUpperCase() + tags[i].substring(1)
-                matchingTag.appendChild(addTagButton)
-                tagList.appendChild(matchingTag)
-                matchedTagCount++
-            }
+                        tags.splice(tagsIndex, 1)
+                        e.target.parentNode.parentNode.removeChild(e.target.parentNode)
+                        let selectedTag = document.createElement("div")
+                        selectedTag.textContent = e.target.value
+
+                        deleteSelectedTagButton = document.createElement("button")
+                        deleteSelectedTagButton.type = "button"
+                        deleteSelectedTagButton.textContent = "-"
+                        deleteSelectedTagButton.classList.add("deleteSelectedTagButton")
+
+                        deleteSelectedTagButton.addEventListener("click", (e) => {
+                            let temp = hiddenSelectedTags.value.replace(e.target.parentNode.textContent.slice(0, -1), '')
+                            hiddenSelectedTags.value = temp
+                            
+
+                            const matchingTag = document.createElement('div')
+                            matchingTag.classList.add("matchingTag")
+                            const addTagButton = document.createElement('button')
+                            addTagButton.type = "button"
+                            addTagButton.classList.add("addTagButton")
+                            addTagButton.textContent = "+"
+                            addTagButton.value = tags[i][0].toUpperCase() + tags[i].substring(1)
+                            matchingTag.textContent = e.target.parentNode.textContent.slice(0, -1)
+                            matchingTag.appendChild(addTagButton)
+                            
+                            tagList.appendChild(matchingTag)
+                            console.log(e.target.parentNode.textContent.slice(0, -1))
+                            tags.push(e.target.parentNode.textContent.slice(0, -1).toLowerCase())
+                            console.log(tags.length)
+                            e.target.parentNode.parentNode.removeChild(e.target.parentNode)
+                            tagSearch.dispatchEvent(new Event('input', { bubbles: true }));
+                        })
+
+
+
+                        selectedTag.appendChild(deleteSelectedTagButton)
+                        selectedTags.appendChild(selectedTag)
+                        console.log(hiddenSelectedTags.value)
+                    })
+
+
+
+                    matchingTag.textContent = tags[i][0].toUpperCase() + tags[i].substring(1)
+                    matchingTag.appendChild(addTagButton)
+                    tagList.appendChild(matchingTag)
+                    matchedTagCount++
+                }
         }
 
     })

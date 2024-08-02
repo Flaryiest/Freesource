@@ -47,4 +47,10 @@ async function logOut(req, res, next) {
     });
 }
 
-module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut, getPostForm}
+async function createPost(req, res) {
+    console.log(req.body)
+    db.createPost(req.currentUser.id, req.body.title, parseInt(req.body.price), req.body.description)
+    res.redirect("/")
+}
+
+module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut, getPostForm, createPost}
