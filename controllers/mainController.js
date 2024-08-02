@@ -28,7 +28,7 @@ async function signUp(req, res) {
 async function login(req, res, next) {
 
     passport.authenticate("local", {
-        successRedirect: "/dashboard",
+        successRedirect: "/",
         failureRedirect: "/sign-up"
       })(req,res, next)
 }
