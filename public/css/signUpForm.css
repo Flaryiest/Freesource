@@ -113,3 +113,17 @@ form .button input:hover{
 form .signup-link a:hover{
   text-decoration: underline;
 }
+
+.flexing {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  font-family: "roboto";
+  display: flex;
+  align-items: center;
+  font-size: 1.3em;
+}

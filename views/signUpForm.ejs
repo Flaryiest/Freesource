@@ -17,18 +17,28 @@
     <div class="container">
       <div class="wrapper">
         <div class="title"><span>Sign Up</span></div>
-        <form action="/sign-up" method="POST">
+        <form action="/sign-up" method="POST" class="box">
           <div class="row">
             <i class="fas fa-user"></i>
             <input type="text" placeholder="Username" name="username" required>
           </div>
           <div class="row">
-            <i class="fas fa-user"></i>
+            <i class="fas"></i>
             <input type="text" placeholder="Email" name="email" required>
+          </div>
+          <div class="row">
+            <i class="fas"></i>
+            <input type="text" placeholder="Address" name="address" required>
           </div>
           <div class="row">
             <i class="fas fa-lock"></i>
             <input type="password" placeholder="Password" name="password" required>
+          </div>
+          <div class="row flexing">
+            <label for="worker" class="label">Worker</label>
+            <input type="radio" name="usertype" id="worker" value="worker">
+            <label for="worker" class="label">Contractor</label>
+            <input type="radio" name="usertype" id="contractor" value="contractor">
           </div>
 
           <div class="row button">

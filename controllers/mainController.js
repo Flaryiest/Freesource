@@ -18,7 +18,7 @@ async function getLoginForm(req,res) {
 
 async function signUp(req, res) {
     bcrypt.hash(req.body.password, 10, function(err, hash) {
-        db.signUp(req.body.username, hash)
+        db.signUp(req.body.username, hash, req.body.address, req.body.email, req.body.usertype)
     });
     
     
@@ -33,7 +33,9 @@ async function login(req, res, next) {
       })(req,res, next)
 }
 
-  
+async function getPostForm(req, res, next) {
+    res.render("postForm")
+}
 
 
 async function logOut(req, res, next) {
@@ -45,4 +47,4 @@ async function logOut(req, res, next) {
     });
 }
 
-module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut}
+module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut, getPostForm}

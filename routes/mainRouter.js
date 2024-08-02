@@ -14,6 +14,7 @@ mainRouter.post("/sign-up", mainController.signUp)
 
 mainRouter.post("/login", mainController.login)
 
+mainRouter.get("/new-post", mainController.getPostForm)
 
 mainRouter.get("/log-out", mainController.logOut)
 module.exports = mainRouter

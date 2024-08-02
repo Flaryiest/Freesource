@@ -5,6 +5,9 @@
             <li><a href="/">Home</a></li>
             <% if (locals.currentUser) { %>
             <li><a href="/dashboard">Dashboard</a></li>
+            <% if (locals.currentUser.type === "contractor") { %>
+            <li><a href="/new-post">Create Post</a></li>
+            <% } %>
             <li><a href="/log-out">Log Out</a></li>
             <% } else { %>
             <li><a href="/login">Log In</a></li>
