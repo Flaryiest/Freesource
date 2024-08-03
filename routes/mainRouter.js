@@ -20,6 +20,10 @@ mainRouter.post("/new-post", mainController.createPost)
 
 mainRouter.get("/log-out", mainController.logOut)
 
+mainRouter.get("/dashboard/delete/:postID", mainController.deletePost)
+
 mainRouter.get("/dashboard", mainController.getDashboard)
+
+
 
 module.exports = mainRouter

@@ -16,4 +16,8 @@ async function getUserPosts(user_id) {
     return rows
 }
 
-module.exports = {signUp, createPost, getUserPosts}
+async function deleteUserPost(postID) {
+    await pool.query("DELETE FROM posts WHERE id = ($1)", [postID])
+}
+
+module.exports = {signUp, createPost, getUserPosts, deleteUserPost}
