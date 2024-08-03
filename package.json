@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "populate": "node db/populateTasks.js",
+    "populate": "sleep 4 && node db/populateTasks.js",
     "start": "node index.js"
   },
   "keywords": [],
