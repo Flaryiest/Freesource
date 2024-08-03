@@ -28,8 +28,12 @@ mainRouter.get("/dashboard/delete/:postID", mainController.deletePost)
 
 mainRouter.get("/dashboard", mainController.getDashboard)
 
+mainRouter.get("/posts/accept/:postID", mainController.acceptPost)
+
 mainRouter.get("/posts", mainController.getAllPosts)
 
 mainRouter.get("/recommended", mainController.getRecommendedTask)
+
+
 
 module.exports = mainRouter

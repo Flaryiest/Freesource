@@ -216,5 +216,10 @@ async function getRecommendedTask(req, res) {
     res.render("recommended")
 }
 
+async function acceptPost(req, res) {
+    console.log(req.user.id, req.params.postID)
+    db.acceptPost(req.user.id, req.params.postID )
+    res.redirect("/dashboard")
+}
 
-module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut, getPostForm, createPost, getDashboard, deletePost, getAllPosts, changeUserTags, removeUserTag, getRecommendedTask}
+module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut, getPostForm, createPost, getDashboard, deletePost, getAllPosts, changeUserTags, removeUserTag, getRecommendedTask, acceptPost}

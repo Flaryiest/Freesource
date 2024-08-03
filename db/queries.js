@@ -31,4 +31,8 @@ async function changeUserTags(user_id, tags) {
     await pool.query("UPDATE users SET tags = ($1) WHERE id = ($2)", [prepedTags, user_id])
 }
 
-module.exports = {signUp, createPost, getUserPosts, deleteUserPost, getAllUserPosts, changeUserTags}
+async function acceptPost(userID, postID) {
+    await pool.query("UPDATE posts SET seller_id = ($1), status = 'accepted' WHERE id = ($2) ", [userID, postID])
+}
+
+module.exports = {signUp, createPost, getUserPosts, deleteUserPost, getAllUserPosts, changeUserTags, acceptPost}
