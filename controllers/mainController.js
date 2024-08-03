@@ -65,6 +65,9 @@ async function getDashboard(req, res) {
     console.log(req.user.id)
     let userPosts = await db.getUserPosts(req.user.id)
     console.log(userPosts)
+    for (let i = 0; i < userPosts.length; i++) {
+        userPosts[i].email = req.user.email
+    }
     res.render("dashboard", {posts : userPosts})
 }
 

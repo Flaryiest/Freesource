@@ -12,17 +12,29 @@
 </head>
 <body>
     <%- include("navbar") %>
-    <div class="postContainer">
-        <% posts.map((post) => { %>
-            <div class="post">
-                <div class="postHeader">
-                    <div class="postTitle"> <%= post.title %> </div>
-                    <div class="postPrice"> <%= post.price %> </div>
+    <div class="postSectionContainer">
+        <div class="myPosts">My Posts</div>
+        <div class="postContainer">
+            <% posts.map((post) => { %>
+                <div class="post">
+                    <div class="postHeader">
+                        <div class="postTitle"> <%= post.title %> </div>
+                        <div class="postPrice"> $<%= post.price %> </div>
+                    </div>
+                    <div class="postTags">
+                        <% post.tags.map((tag) => { %>
+                            <div class="postTag"> <%= tag %> </div>
+                        <% }) %>
+                    </div>
+                    <div class="postUser"> <%= post.email %> </div>
+                    <div class="postDescription"> <%= post.description %> </div>
+                    <form type="GET" action=<%= "/dashboard/delete/"  + post.id %> >
+                        <button class="contact">Delete</button>
+                    </form>
+
                 </div>
-                <div class="postUser"> <%= post.user_id %> </div>
-                <div class="postDescription"> <%= post.description %> </div>
-            </div>
-        <% }) %>
-    </div>
+            <% }) %>
+        </div>
+        </div>
 </body>
 </html>
