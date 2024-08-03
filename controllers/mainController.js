@@ -62,13 +62,13 @@ async function createPost(req, res) {
 }
 
 async function getDashboard(req, res) {
-    console.log(req.user.id)
+
     let userPosts = await db.getUserPosts(req.user.id)
-    console.log(userPosts)
     for (let i = 0; i < userPosts.length; i++) {
         userPosts[i].email = req.user.email
     }
-    res.render("dashboard", {posts : userPosts})
+    console.log(req.user.tags)
+    res.render("dashboard", {posts : userPosts, userTags : req.user.tags})
 }
 
 async function deletePost(req, res) {
@@ -82,4 +82,17 @@ async function getAllPosts(req, res) {
     res.render("posts", {posts : userPosts})
 }
 
-module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut, getPostForm, createPost, getDashboard, deletePost, getAllPosts}
+async function changeUserTags(req, res) {
+    console.log(req.body.selectedTags)
+    let postTags = req.body.selectedTags.split(", ")
+    filteredPostTags = postTags.filter((tag) => tag != " ")
+    filteredPostTags = filteredPostTags.filter((tag) => tag != '')
+    console.log(filteredPostTags)
+    if (!(filteredPostTags)) {
+        filteredPostTags = []
+    }
+    db.changeUserTags(req.user.id, filteredPostTags)
+    res.redirect("/dashboard")
+}
+
+module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut, getPostForm, createPost, getDashboard, deletePost, getAllPosts, changeUserTags}

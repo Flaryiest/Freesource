@@ -24,8 +24,11 @@ async function getAllUserPosts() {
     return rows
 }
 
-async function changeUserTags(user_id, tags) { 
-    await pool.query("UPDATE users SET tags = ($1) WHERE id = ($2)", [tags, user_id])
+async function changeUserTags(user_id, tags) {
+    const prepedTags = JSON.stringify(tags)
+    .replace('[', '{')
+    .replace(']', '}');
+    await pool.query("UPDATE users SET tags = ($1) WHERE id = ($2)", [prepedTags, user_id])
 }
 
 module.exports = {signUp, createPost, getUserPosts, deleteUserPost, getAllUserPosts, changeUserTags}
