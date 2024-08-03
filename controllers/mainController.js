@@ -77,4 +77,9 @@ async function deletePost(req, res) {
     res.redirect("/dashboard")
 }
 
-module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut, getPostForm, createPost, getDashboard, deletePost}
+async function getAllPosts(req, res) {
+    let userPosts = await db.getAllUserPosts()
+    res.render("posts", {posts : userPosts})
+}
+
+module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut, getPostForm, createPost, getDashboard, deletePost, getAllPosts}

@@ -24,6 +24,6 @@ mainRouter.get("/dashboard/delete/:postID", mainController.deletePost)
 
 mainRouter.get("/dashboard", mainController.getDashboard)
 
-
+mainRouter.get("/posts", mainController.getAllPosts)
 
 module.exports = mainRouter

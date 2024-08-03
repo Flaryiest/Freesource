@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Source</title>
+    <link rel="stylesheet" href="/css/dashboard.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <%- include("navbar") %>
+    <div class="postSectionContainer">
+        <div class="myPosts">Posts</div>
+        <div class="postContainer">
+            <% posts.map((post) => { %>
+                <div class="post">
+                    <div class="postHeader">
+                        <div class="postTitle"> <%= post.title %> </div>
+                        <div class="postPrice"> $<%= post.price %> </div>
+                    </div>
+                    <div class="postTags">
+                        <% post.tags.map((tag) => { %>
+                            <div class="postTag"> <%= tag %> </div>
+                        <% }) %>
+                    </div>
+                    <div class="postUser"> <%= post.email %> </div>
+                    <div class="postDescription"> <%= post.description %> </div>
+                    <div class="postSubInfo">
+                        <% const timestamp = String(post.created_timestamp).slice(0, 15) %>
+                        <div class="postDate"> <%= timestamp %> </div>
+                        <div class="postStatus"> Status: <span class="status"> <%= post.status %> </span> </div>
+                    </div>    
+                </div>
+            <% }) %>
+        </div>
+        </div>
+</body>

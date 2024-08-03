@@ -92,3 +92,18 @@
     justify-content: space-between;
     margin-top: 2dvh;
 }
+
+.status {
+    color: rgb(0, 217, 255);
+}
+
+.sellerContent {
+    font-family: "roboto";
+    display: flex;
+    justify-content: center;
+    margin-top: 2dvh;
+}
+
+h2 {
+    font-size: 3em;
+}
