@@ -16,6 +16,8 @@ async function getLoginForm(req,res) {
     res.render("loginForm")
 }
 
+
+
 async function signUp(req, res) {
     bcrypt.hash(req.body.password, 10, async function(err, hash) {
         let address = await geocodeAddress(req.body.address)
@@ -36,6 +38,9 @@ async function login(req, res, next) {
 }
 
 async function getPostForm(req, res, next) {
+    if (!(req.user)) {
+        res.redirect("/login")
+    }
     res.render("postForm")
 }
 
@@ -58,12 +63,15 @@ async function createPost(req, res) {
     if (!(filteredPostTags)) {
         filteredPostTags = []
     }
-    console.log(req.user)
+    
     db.createPost(req.user.id, req.body.title, parseInt(req.body.price), req.body.description, filteredPostTags, req.user.email, req.user.lat, req.user.long)
     res.redirect("/")
 }
 
 async function getDashboard(req, res) {
+    if (!(req.user)) {
+        res.redirect("/login")
+    }
     let userAcceptedPosts = await db.getAcceptedPosts(req.user.id)
     let userPosts = await db.getUserPosts(req.user.id)
     for (let i = 0; i < userPosts.length; i++) {
