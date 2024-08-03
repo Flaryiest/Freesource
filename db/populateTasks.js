@@ -37,7 +37,7 @@ INSERT INTO posts (user_id, title, price, description, tags, status, lat, long, 
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: "postgresql://postgres:whIIruXzYuaouclPRcadhPrBFXmfBaTL@postgres.railway.internal:5432/railway"
+    connectionString: "postgresql://postgres:whIIruXzYuaouclPRcadhPrBFXmfBaTL@roundhouse.proxy.rlwy.net:59943/railway"
   });
   await client.connect();
   await client.query(SQL);
