@@ -40,4 +40,8 @@ async function getAcceptedPosts(userID) {
     return rows
 }
 
-module.exports = {signUp, createPost, getUserPosts, deleteUserPost, getAllUserPosts, changeUserTags, acceptPost, getAcceptedPosts}
+async function completePost(userID, postID) {
+    await pool.query("UPDATE posts SET seller_id = null, status = 'completed' WHERE id = ($1)", [postID])
+}
+
+module.exports = {signUp, createPost, getUserPosts, deleteUserPost, getAllUserPosts, changeUserTags, acceptPost, getAcceptedPosts, completePost}

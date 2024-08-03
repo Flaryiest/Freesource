@@ -28,6 +28,8 @@ mainRouter.get("/dashboard/delete/:postID", mainController.deletePost)
 
 mainRouter.get("/dashboard", mainController.getDashboard)
 
+mainRouter.get("/posts/complete/:postID", mainController.completePost)
+
 mainRouter.get("/posts/accept/:postID", mainController.acceptPost)
 
 mainRouter.get("/posts", mainController.getAllPosts)

@@ -227,4 +227,9 @@ async function acceptPost(req, res) {
     res.redirect("/dashboard")
 }
 
-module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut, getPostForm, createPost, getDashboard, deletePost, getAllPosts, changeUserTags, removeUserTag, getRecommendedTask, acceptPost}
+async function completePost(req, res) {
+    db.completePost(req.user.id, req.params.postID)
+    res.redirect("/dashboard")
+}
+
+module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut, getPostForm, createPost, getDashboard, deletePost, getAllPosts, changeUserTags, removeUserTag, getRecommendedTask, acceptPost, completePost}
