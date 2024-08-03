@@ -44,4 +44,9 @@ async function completePost(userID, postID) {
     await pool.query("UPDATE posts SET seller_id = null, status = 'completed' WHERE id = ($1)", [postID])
 }
 
-module.exports = {signUp, createPost, getUserPosts, deleteUserPost, getAllUserPosts, changeUserTags, acceptPost, getAcceptedPosts, completePost}
+async function getMatchingPosts(postOneID, postTwoID, postThreeID) {
+    const {rows} = await pool.query("SELECT * FROM posts WHERE id = $1 OR id = $2 OR id = $3", [postOneID, postTwoID, postThreeID])
+    return rows
+}
+
+module.exports = {signUp, createPost, getUserPosts, deleteUserPost, getAllUserPosts, changeUserTags, acceptPost, getAcceptedPosts, completePost, getMatchingPosts}

@@ -134,11 +134,31 @@ async function geocodeAddress(address) {
     }
 }
 
+async function findDistance(originLat, originLong, destinationLat, destinationLong) {
+    const toRadians = angle => angle * (Math.PI / 180);
+    const R = 6371;
+    const dLat = toRadians(destinationLat - originLat);
+    const dLon = toRadians(destinationLong - originLong);
+  
+    const radLat1 = toRadians(originLat);
+    const radLat2 = toRadians(destinationLat);
+  
+    const a = Math.sin(dLat / 2) ** 2 +
+              Math.cos(radLat1) * Math.cos(radLat2) *
+              Math.sin(dLon / 2) ** 2;
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    
+    const distance = R * c;
+    
+    return distance;
+  }
 
-async function matchingSellerToBuyer(contractors, worker){
+
+
+  async function matchingSellerToBuyer(contractors, worker){
     let score_list = [];
     for (let i = 0; i < contractors.length; i++){
-        const distance = await findDistance(worker.location, contractors[i].location);
+        const distance = await findDistance(worker.lat, worker.long, contractors[i].lat, contractors[i].long);
         let skills_percent = 0;
         for (let j = 0; j < contractors[i].tags.length; j++){
             for (let k = 0; k < worker.tags.length; k++){
@@ -159,7 +179,9 @@ async function getRecommendedTask(req, res) {
     let contractors = await db.getAllUserPosts()
     let bestJobs = await matchingSellerToBuyer(contractors, req.user)
     console.log(bestJobs, "test")
-    res.render("recommended")
+    let posts = await db.getMatchingPosts(bestJobs[0][0], bestJobs[1][0], bestJobs[2][0])
+    console.log(posts, "posts")
+    res.render("recommended", {posts: posts})
 }
 
 async function acceptPost(req, res) {

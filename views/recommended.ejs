@@ -13,5 +13,36 @@
 <body>
     <%- include("navbar") %>
     <div class="myPosts">Recommended</div>
+    <div class="myPosts">Posts</div>
+    <div class="postContainer">
+        <% posts.map((post) => { %>
+            <% if (post.status == "pending") { %>
+            <div class="post">
+                <div class="postHeader">
+                    <div class="postTitle"> <%= post.title %> </div>
+                    <div class="postPrice"> $<%= post.price %> </div>
+                </div>
+                <div class="postTags">
+                    <% post.tags.map((tag) => { %>
+                        <div class="postTag"> <%= tag %> </div>
+                    <% }) %>
+                </div>
+                <div class="postUser"> <%= post.email %> </div>
+                <div class="postDescription"> <%= post.description %> </div>
+                <div class="postSubInfo">
+                    <% const timestamp = String(post.created_timestamp).slice(0, 15) %>
+                    <div class="postDate"> <%= timestamp %> </div>
+                    <div class="postStatus"> Status: <span class="status"> <%= post.status %> </span> </div>
+                </div>
+                <% if (locals.currentUser) {if (locals.currentUser.type === "worker") { %>
+                    <form type="GET" action=<%= "/posts/accept/"  + post.id %> >
+                        <button class="contact">Accept</button>
+                    </form>  
+                <% }}} %> 
+            </div>
+
+        <% }) %>
+    </div>
+    </div>
 </body>
 </html>
