@@ -95,7 +95,7 @@ async function DistanceAndTime(origin_street, origin_city, destination_street, d
     return values;
 }
 //INCOMPLETE FUNCTION BECAUSE IDK WHAT THE DATASET IS LIKE
-async function matchingAlgorithm(contractor, workers){
+async function matchingBuyerToSeller(contractor, workers){
     let score_list = [];
     for (let i = 0; i < workers.length; i++){
         if (contractor.city == workers[i].city){
@@ -109,11 +109,33 @@ async function matchingAlgorithm(contractor, workers){
                     }
                 }
             }
-            skills_percent /= contractor.tags.length;
+            skills_percent /= (contractor.tags.length+0.5*workers[i].tags.length);
             score_list.push([workers[i].id, 50*Math.log(16-values[0])/Math.log(16) + 25*skills_percent + 5*workers[i].rating]);
         }
     }
     //return a sorted list of the best matched workers
+    score_list.sort((a, b) => b[1] - a[1]);
+    return score_list.slice(0, Math.min(10, score_list.length));
+}
+
+async function matchingSellerToBuyer(contractors, worker){
+    let score_list = [];
+    for (let i = 0; i < contractors.length; i++){
+        if (worker.city == contractors[i].city){
+            const values = DistanceAndTime(worker.street, worker.city, contractors[i].street, contractors[i].city);
+            let skills_percent = 0;
+            for (let j = 0; j < contractors[i].tags.length; j++){
+                for (let k = 0; k < worker.tags.length; k++){
+                    if (worker.tags[k] == contractors[i].tags[j]){
+                        skills_percent++;
+                        break;
+                    }
+                }
+            }
+            skills_percent /= contractors[i].tags.length;
+            score_list.push([contractors[i].id, 50*Math.log(16-values[0])/Math.log(16) + 50*skills_percent])
+        }
+    }
     score_list.sort((a, b) => b[1] - a[1]);
     return score_list.slice(0, Math.min(10, score_list.length));
 }
