@@ -1,0 +1,208 @@
+.postContainer {
+    display: flex;
+    margin-top: 3dvh;
+    width: 100dvw;
+    height: 100%;
+    font-family: "roboto";
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.post {
+    width: 40dvw;
+    min-height: 18dvh;
+    padding-top: 2dvh;
+    padding-bottom: 2dvh;
+    padding-left: 10dvw;
+    padding-right: 10dvw;
+    border-radius: 8px;
+    border-bottom: 1px solid rgba(3, 3, 3, 0.25);
+    border-top: 1px solid rgba(3, 3, 3, 0.25);
+    
+}
+
+.postHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.postHeader {
+    font-size: 2.5em;
+    margin-bottom: 2dvh;
+}
+.postDescription {
+    line-height: 1.5;
+    margin-top: 2dvh;
+}
+
+.postPrice {
+    color: rgb(0, 0, 0);
+}
+
+.postTitle {
+    color: rgb(53, 53, 53);
+}
+
+.myPosts {
+    font-size: 3.5em;
+    font-family: "roboto";
+    width: 100%;
+    text-align: center;
+    margin-top: 3dvh;
+    
+}
+
+
+.postTags {
+    display: flex;
+    gap: 16px;
+}
+
+.postTag {
+    background-color: rgb(0, 47, 255);
+    color: white;
+    height: 2.8dvh;
+    width: 15%;
+    margin-bottom: 1dvh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5%;
+    box-shadow: 1px 1px 1px 1px rgb(231, 231, 231);
+    font-size: 0.8em;
+}
+
+.contact {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: black;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1dvh;
+    box-shadow: 1px 1px 1px 1px rgb(184, 184, 184);
+}
+
+.postSubInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2dvh;
+}
+
+.status {
+    color: rgb(0, 217, 255);
+}
+
+.sellerContent {
+    font-family: "roboto";
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.userTags {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10dvw;
+    margin-right: 10dvw;
+}
+
+
+.addTagButton {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    box-shadow: none;
+    padding: 0px;
+    text-align: center;
+}
+
+.tagList {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+
+.selectedTags {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 2dvh;
+    align-items: center;
+    justify-content: center;
+    height: 3dvh;
+}
+
+.deleteSelectedTagButton {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    box-shadow: none;
+    padding: 0px;
+    text-align: center;
+}
+
+.form-group {
+    margin-top: 2dvh;
+}
+
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    font-family: "roboto";
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+#tags {
+    width: 30dvh;
+}
+
+.button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}

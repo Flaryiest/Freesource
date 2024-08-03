@@ -14,6 +14,20 @@ mainRouter.post("/sign-up", mainController.signUp)
 
 mainRouter.post("/login", mainController.login)
 
+mainRouter.get("/new-post", mainController.getPostForm)
+
+mainRouter.post("/new-post", mainController.createPost)
 
 mainRouter.get("/log-out", mainController.logOut)
+
+mainRouter.post("/dashboard/deleteUserTag", mainController.removeUserTag)
+
+mainRouter.post("/dashboard/changeUserTags", mainController.changeUserTags)
+
+mainRouter.get("/dashboard/delete/:postID", mainController.deletePost)
+
+mainRouter.get("/dashboard", mainController.getDashboard)
+
+mainRouter.get("/posts", mainController.getAllPosts)
+
 module.exports = mainRouter

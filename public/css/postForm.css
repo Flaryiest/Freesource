@@ -1,0 +1,110 @@
+
+
+.container {
+    max-width: 70dvw;
+    display: grid;
+    margin-left: 15dvw;
+    margin-right: 15dvw;
+    align-items: center;
+    font-family: "roboto";
+}
+
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.title2 {
+    display: flex;
+    margin-top: 5dvh;
+    font-size: 3em;
+    justify-content: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    font-family: "roboto";
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.addTagButton {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    box-shadow: none;
+    padding: 0px;
+    text-align: center;
+}
+
+.tagList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+
+.selectedTags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 2dvh;
+    align-items: center;
+    justify-content: center;
+    height: 3dvh;
+}
+
+.deleteSelectedTagButton {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    box-shadow: none;
+    padding: 0px;
+    text-align: center;
+}
