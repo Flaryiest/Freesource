@@ -160,6 +160,7 @@ async function findDistance(originLat, originLong, destinationLat, destinationLo
     for (let i = 0; i < contractors.length; i++){
         const distance = await findDistance(worker.lat, worker.long, contractors[i].lat, contractors[i].long);
         let skills_percent = 0;
+        if (contractors.tags && worker.tags) {
         for (let j = 0; j < contractors[i].tags.length; j++){
             for (let k = 0; k < worker.tags.length; k++){
                 if (worker.tags[k] == contractors[i].tags[j]){
@@ -167,7 +168,7 @@ async function findDistance(originLat, originLong, destinationLat, destinationLo
                     break;
                 }
             }
-        }
+        }}
         skills_percent /= contractors[i].tags.length;
         score_list.push([contractors[i].id, 75*Math.log(16-distance/1000)/Math.log(16) + 25*skills_percent])
     }
