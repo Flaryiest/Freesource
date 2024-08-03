@@ -68,6 +68,9 @@ async function getDashboard(req, res) {
         userPosts[i].email = req.user.email
     }
     console.log(req.user.tags)
+    if (req.user.tags) {
+        req.user.tags.splice(0, 0, "Remove All")
+    }
     res.render("dashboard", {posts : userPosts, userTags : req.user.tags})
 }
 
@@ -95,4 +98,17 @@ async function changeUserTags(req, res) {
     res.redirect("/dashboard")
 }
 
-module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut, getPostForm, createPost, getDashboard, deletePost, getAllPosts, changeUserTags}
+async function removeUserTag(req, res) {
+    console.log(req.body.selectedTag)
+    console.log(req.user.tags)
+    filteredTags = req.user.tags.filter(function (tag) {
+        console.log(tag, req.body.selectedTag)
+        return (!(tag.includes(req.body.selectedTag)))
+        
+    })
+    db.changeUserTags(req.user.id, filteredTags)
+    console.log(filteredTags)
+    res.redirect("/dashboard")
+}
+
+module.exports = {getHomepage, getSignUpForm, getLoginForm, signUp, login, logOut, getPostForm, createPost, getDashboard, deletePost, getAllPosts, changeUserTags, removeUserTag}

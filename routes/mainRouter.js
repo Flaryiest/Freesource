@@ -20,6 +20,8 @@ mainRouter.post("/new-post", mainController.createPost)
 
 mainRouter.get("/log-out", mainController.logOut)
 
+mainRouter.post("/dashboard/deleteUserTag", mainController.removeUserTag)
+
 mainRouter.post("/dashboard/changeUserTags", mainController.changeUserTags)
 
 mainRouter.get("/dashboard/delete/:postID", mainController.deletePost)
