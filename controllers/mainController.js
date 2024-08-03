@@ -95,25 +95,27 @@ async function DistanceAndTime(origin_street, origin_city, destination_street, d
     return values;
 }
 //INCOMPLETE FUNCTION BECAUSE IDK WHAT THE DATASET IS LIKE
-async function matchingAlgorithm(post, users){
-    let score;
-    for (let i = 0; i < users.length; i++){
-        if (post.city == users[i].city){
-            const values = DistanceAndTime(post.street, post.city, users[i].street, users[i].city);
+async function matchingAlgorithm(contractor, workers){
+    let score_list = [];
+    for (let i = 0; i < workers.length; i++){
+        if (contractor.city == workers[i].city){
+            const values = DistanceAndTime(contractor.street, contractor.city, workers[i].street, workers[i].city);
             let skills_percent = 0;
-            for (let j = 0; j < post.tags.length; j++){
-                for (let k = 0; k < users[i].tags.length; k++){
-                    if (post.tags[j] == users[i].tags[k]){
+            for (let j = 0; j < contractor.tags.length; j++){
+                for (let k = 0; k < workers[i].tags.length; k++){
+                    if (contractor.tags[j] == workers[i].tags[k]){
                         skills_percent++;
                         break;
                     }
                 }
             }
-            skills_percent /= post.tags.length;
-            score = 50*Math.log(16-values[0])/Math.log(16) + 25*skills_percent + 5*users[i].rating;
+            skills_percent /= contractor.tags.length;
+            score_list.push([workers[i].id, 50*Math.log(16-values[0])/Math.log(16) + 25*skills_percent + 5*workers[i].rating]);
         }
     }
-
+    //return a sorted list of the best matched workers
+    score_list.sort((a, b) => b[1] - a[1]);
+    return score_list.slice(0, Math.min(10, score_list.length));
 }
 
 async function logOut(req, res, next) {
