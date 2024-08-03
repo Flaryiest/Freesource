@@ -48,7 +48,7 @@
                 <div class="myPosts">My Tags</div>
                 <div class="form-group">
                     <div class="selectedTags">
-                        <input class="hiddenSelectedTags" id="selectedTags" name="selectedTags" value="<%= JSON.stringify(userTags).replace('[', '').replace(']', '') %>" type="hidden">
+                        <input class="hiddenSelectedTags" id="selectedTags" name="selectedTags" type="hidden">
                         <div>My Tags:</div>
                         <% if (userTags) { %>
                         <% userTags.forEach((tag) => { %>
