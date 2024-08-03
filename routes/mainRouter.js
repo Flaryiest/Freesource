@@ -30,4 +30,6 @@ mainRouter.get("/dashboard", mainController.getDashboard)
 
 mainRouter.get("/posts", mainController.getAllPosts)
 
+mainRouter.get("/recommended", mainController.getRecommendedTask)
+
 module.exports = mainRouter
