@@ -28,10 +28,15 @@
                     </div>
                     <div class="postUser"> <%= post.email %> </div>
                     <div class="postDescription"> <%= post.description %> </div>
+                    <div class="postSubInfo">
+                        <% const timestamp = String(post.created_timestamp).slice(0, 15) %>
+                        <div class="postDate"> <%= timestamp %> </div>
+                        <div class="postStatus"> Status: <%= post.status %> </div>
+                    </div>
                     <form type="GET" action=<%= "/dashboard/delete/"  + post.id %> >
                         <button class="contact">Delete</button>
                     </form>
-
+                    
                 </div>
             <% }) %>
         </div>

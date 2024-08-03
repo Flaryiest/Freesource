@@ -34,7 +34,6 @@
 .postDescription {
     line-height: 1.5;
     margin-top: 2dvh;
-    text-align: center;
 }
 
 .postPrice {
@@ -86,4 +85,10 @@
     transition: background-color 0.3s ease;
     margin-top: 1dvh;
     box-shadow: 1px 1px 1px 1px rgb(184, 184, 184);
+}
+
+.postSubInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2dvh;
 }
