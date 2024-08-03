@@ -33,29 +33,112 @@ async function login(req, res, next) {
       })(req,res, next)
 }
 
+<<<<<<< Updated upstream
 async function findDistance(origin, destination){
     const axios = require('axios');
 
+=======
+async function getPostForm(req, res, next) {
+    res.render("postForm")
+}
+
+
+async function logOut(req, res, next) {
+    req.logout((err) => {
+        if (err) {
+        return next(err);
+        }
+        res.redirect("/");
+    });
+}
+
+async function createPost(req, res) {
+    console.log(req.body.selectedTags)
+    let postTags = req.body.selectedTags.split(", ")
+    filteredPostTags = postTags.filter((tag) => tag != " ")
+    filteredPostTags = filteredPostTags.filter((tag) => tag != '')
+    console.log(filteredPostTags)
+    if (!(filteredPostTags)) {
+        filteredPostTags = []
+    }
+    console.log(req.user)
+    db.createPost(req.user.id, req.body.title, parseInt(req.body.price), req.body.description, filteredPostTags, req.user.email, req.user.location)
+    res.redirect("/")
+}
+
+async function getDashboard(req, res) {
+    let userAcceptedPosts = await db.getAcceptedPosts(req.user.id)
+    let userPosts = await db.getUserPosts(req.user.id)
+    for (let i = 0; i < userPosts.length; i++) {
+        userPosts[i].email = req.user.email
+    }
+    console.log(req.user.tags)
+    if (req.user.tags) {
+        req.user.tags.splice(0, 0, "Remove All")
+    }
+    res.render("dashboard", {posts : userPosts, userTags : req.user.tags, userAcceptedPosts : userAcceptedPosts})
+}
+
+
+
+
+async function deletePost(req, res) {
+    console.log(req.params.postID)
+    db.deleteUserPost(req.params.postID)
+    res.redirect("/dashboard")
+}
+
+async function getAllPosts(req, res) {
+    let userPosts = await db.getAllUserPosts()
+    res.render("posts", {posts : userPosts})
+}
+
+async function changeUserTags(req, res) {
+    console.log(req.body.selectedTags)
+    let postTags = req.body.selectedTags.split(", ")
+    filteredPostTags = postTags.filter((tag) => tag != " ")
+    filteredPostTags = filteredPostTags.filter((tag) => tag != '')
+    console.log(filteredPostTags)
+    if (!(filteredPostTags)) {
+        filteredPostTags = []
+    }
+    db.changeUserTags(req.user.id, filteredPostTags)
+    res.redirect("/dashboard")
+}
+
+async function removeUserTag(req, res) {
+    console.log(req.body.selectedTag)
+    console.log(req.user.tags)
+    filteredTags = req.user.tags.filter(function (tag) {
+        console.log(tag, req.body.selectedTag)
+        return (!(tag.includes(req.body.selectedTag)))
+        
+    })
+    db.changeUserTags(req.user.id, filteredTags)
+    console.log(filteredTags)
+    res.redirect("/dashboard")
+}
+
+async function geocodeAddress(address) {
+>>>>>>> Stashed changes
     const openCageApiKey = '0e0e78fcdfa3480885b8f9b8784c1c17';
     const openRouteServiceApiKey = '5b3ce3597851110001cf6248b38c920d855d4c37b5275e150e5d9e38';
-
-    // Function to get latitude and longitude for an address
-    async function geocodeAddress(address) {
-        const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(address)}&key=${openCageApiKey}`;
-        
-        try {
-            const response = await axios.get(url);
-            if (response.data.results.length > 0) {
-            const location = response.data.results[0].geometry;
-            return location;
-            } else {
-            throw new Error('Geocoding failed: No results found');
-            }
-        } catch (error) {
-            console.error(error);
-        }
+    const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(address)}&key=${openCageApiKey}`;
+    
+    try {
+      const response = await axios.get(url);
+      if (response.data.results.length > 0) {
+        const location = response.data.results[0].geometry;
+        return location;
+      } else {
+        throw new Error('Geocoding failed: No results found');
+      }
+    } catch (error) {
+      console.error(error);
     }
+  }
 
+<<<<<<< Updated upstream
     // Function to calculate distance and time between two locations
     async function calculateDistance(originCoords, destinationCoords) {
         const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=${openRouteServiceApiKey}&start=${originCoords.lng},${originCoords.lat}&end=${destinationCoords.lng},${destinationCoords.lat}`;
@@ -89,13 +172,31 @@ async function findDistance(origin, destination){
     }
 
     const distance = main();
+=======
+async function findDistance(origin, destination) {
+    const toRadians = angle => angle * (Math.PI / 180);
+    const R = 6371;
+    const dLat = toRadians(destination.lat - origin.lat);
+    const dLon = toRadians(destination.long - origin.long);
+  
+    const radLat1 = toRadians(origin.lat);
+    const radLat2 = toRadians(destination.lat);
+  
+    const a = Math.sin(dLat / 2) ** 2 +
+              Math.cos(radLat1) * Math.cos(radLat2) *
+              Math.sin(dLon / 2) ** 2;
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    
+    const distance = R * c;
+    
+>>>>>>> Stashed changes
     return distance;
-}
-//INCOMPLETE FUNCTION BECAUSE IDK WHAT THE DATASET IS LIKE
+  }
+  
 async function matchingBuyerToSeller(contractor, workers){
     let score_list = [];
     for (let i = 0; i < workers.length; i++){
-        const distance = findDistance(contractor.location, workers[i].location);
+        const distance = findDistance(contractor.coordinates, workers[i].coordinates);
         let skills_percent = 0;
         for (let j = 0; j < contractor.tags.length; j++){
             for (let k = 0; k < workers[i].tags.length; k++){
@@ -116,7 +217,11 @@ async function matchingBuyerToSeller(contractor, workers){
 async function matchingSellerToBuyer(contractors, worker){
     let score_list = [];
     for (let i = 0; i < contractors.length; i++){
+<<<<<<< Updated upstream
         const distance = findDistance(worker.location, contractors[i].location);
+=======
+        const distance = await findDistance(worker.coordinates, contractors[i].coordinates);
+>>>>>>> Stashed changes
         let skills_percent = 0;
         for (let j = 0; j < contractors[i].tags.length; j++){
             for (let k = 0; k < worker.tags.length; k++){
