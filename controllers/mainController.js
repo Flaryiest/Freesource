@@ -57,7 +57,7 @@ async function createPost(req, res) {
         filteredPostTags = []
     }
     console.log(req.user)
-    db.createPost(req.user.id, req.body.title, parseInt(req.body.price), req.body.description, filteredPostTags)
+    db.createPost(req.user.id, req.body.title, parseInt(req.body.price), req.body.description, filteredPostTags, req.user.email, req.user.location)
     res.redirect("/")
 }
 

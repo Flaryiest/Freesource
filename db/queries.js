@@ -6,8 +6,8 @@ async function signUp(username, password, address, email, type) {
     await pool.query("INSERT INTO users (username, password, location, email, type) VALUES (($1), ($2), ($3), ($4), ($5))", [username, password, address, email, type])
 }
 
-async function createPost(user_id, title, price, description, tags) {
-    await pool.query("INSERT INTO posts (user_id, title, price, description, tags, status) VALUES (($1), ($2), ($3), ($4), ($5), 'pending')", [user_id, title, price, description, tags])
+async function createPost(user_id, title, price, description, tags, email, location) {
+    await pool.query("INSERT INTO posts (user_id, title, price, description, tags, status, email, location) VALUES (($1), ($2), ($3), ($4), ($5), 'pending', ($6), ($7))", [user_id, title, price, description, tags, email, location])
 }
 
 async function getUserPosts(user_id) {
