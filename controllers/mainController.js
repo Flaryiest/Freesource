@@ -169,7 +169,7 @@ async function findDistance(origin, destination){
         return distance;
     }
 
-    const distance = main();
+    const distance = await main();
     return distance;
 }
 //INCOMPLETE FUNCTION BECAUSE IDK WHAT THE DATASET IS LIKE
@@ -197,7 +197,7 @@ async function matchingBuyerToSeller(contractor, workers){
 async function matchingSellerToBuyer(contractors, worker){
     let score_list = [];
     for (let i = 0; i < contractors.length; i++){
-        const distance = findDistance(worker.location, contractors[i].location);
+        const distance = await findDistance(worker.location, contractors[i].location);
         let skills_percent = 0;
         for (let j = 0; j < contractors[i].tags.length; j++){
             for (let k = 0; k < worker.tags.length; k++){
