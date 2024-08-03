@@ -16,6 +16,7 @@
         <div class="myPosts">Posts</div>
         <div class="postContainer">
             <% posts.map((post) => { %>
+                <% if (post.status == "pending") { %>
                 <div class="post">
                     <div class="postHeader">
                         <div class="postTitle"> <%= post.title %> </div>
@@ -37,7 +38,7 @@
                         <form type="GET" action=<%= "/posts/accept/"  + post.id %> >
                             <button class="contact">Accept</button>
                         </form>  
-                    <% }} %> 
+                    <% }}} %> 
                 </div>
 
             <% }) %>

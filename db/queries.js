@@ -35,4 +35,9 @@ async function acceptPost(userID, postID) {
     await pool.query("UPDATE posts SET seller_id = ($1), status = 'accepted' WHERE id = ($2) ", [userID, postID])
 }
 
-module.exports = {signUp, createPost, getUserPosts, deleteUserPost, getAllUserPosts, changeUserTags, acceptPost}
+async function getAcceptedPosts(userID) {
+    const {rows} = await pool.query("SELECT * FROM posts WHERE seller_id = ($1)", [userID])
+    return rows
+}
+
+module.exports = {signUp, createPost, getUserPosts, deleteUserPost, getAllUserPosts, changeUserTags, acceptPost, getAcceptedPosts}
