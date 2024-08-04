@@ -107,6 +107,7 @@ h2 {
 
 .title {
 	font-size: 2em;
+	margin-left: 8dvw;
 }
 
 .taskList {
@@ -383,6 +384,9 @@ h2 {
 		width: 100%;
 		text-align: center;
 	}
+	.logo {
+		visibility: hidden;
+	}
 }
 
 
@@ -421,4 +425,17 @@ h2 {
 
 body {
 	overflow-x: hidden;
+}
+
+.logo {
+	max-height: 130px;
+	max-width: 100%;
+	height: fit-content;
+	position: absolute;
+	margin-right: 5dvw;
+}
+
+.nav-left {
+	display: flex;
+	align-items: center;
 }
