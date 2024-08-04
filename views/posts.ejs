@@ -34,13 +34,13 @@
                         <div class="postDate"> <%= timestamp %> </div>
                         <div class="postStatus"> Status: <span class="status"> <%= post.status %> </span> </div>
                     </div>
-                    <% if (locals.currentUser) {if (locals.currentUser.type === "worker") { %>
-                        <form type="GET" action=<%= "/posts/accept/"  + post.id %> >
+                    <% if (locals.currentUser && locals.currentUser.type === "worker") { %>
+                        <form type="GET" action="<%= "/posts/accept/" + post.id %>">
                             <button class="contact">Accept</button>
                         </form>  
-                    <% }}} %> 
+                    <% } %> 
                 </div>
-
+                <% } %>
             <% }) %>
         </div>
         </div>
